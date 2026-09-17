@@ -1,0 +1,56 @@
+<div class="dashboard">
+  <nav class="navbar">
+    <span class="brand">Hospital Portal</span>
+    <button class="btn-logout" (click)="back()">Back</button>
+  </nav>
+
+  <div class="content">
+    <h2>Book an Appointment</h2>
+
+    <div class="error" *ngIf="error">{{ error }}</div>
+
+    <form (ngSubmit)="onSubmit()" class="book-form">
+
+      <div class="field">
+        <label>Select Doctor</label>
+        <select [(ngModel)]="selectedDoctorId" name="doctor" (change)="onDoctorOrDateChange()">
+          <option [ngValue]="null" disabled>-- Choose a doctor --</option>
+          <option *ngFor="let d of doctors" [ngValue]="d.id">
+            Dr. {{ d.firstName }} {{ d.lastName }} — {{ d.specialization }}
+          </option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Appointment Date</label>
+        <input type="date" [(ngModel)]="selectedDate" name="date"
+               [min]="today"
+               (change)="onDoctorOrDateChange()" />
+      </div>
+
+      <div class="field" *ngIf="selectedDoctorId && selectedDate">
+        <label>Available Time Slots</label>
+        <div *ngIf="loadingSlots" class="loading">Loading slots...</div>
+        <div *ngIf="!loadingSlots && availableSlots.length === 0" class="empty">
+          No slots available for this date.
+        </div>
+        <div class="slot-grid" *ngIf="!loadingSlots && availableSlots.length > 0">
+          <button type="button"
+                  *ngFor="let slot of availableSlots"
+                  class="slot-btn"
+                  [class.selected]="selectedSlot === slot"
+                  (click)="selectedSlot = slot">
+            {{ slot }}
+          </button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Notes (optional)</label>
+        <textarea [(ngModel)]="notes" name="notes" rows="3" placeholder="Describe your symptoms..."></textarea>
+      </div>
+
+      <button type="submit" class="btn-primary" [disabled]="!selectedSlot">Confirm Booking</button>
+    </form>
+  </div>
+</div>

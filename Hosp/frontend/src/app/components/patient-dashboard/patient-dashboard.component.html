@@ -1,0 +1,41 @@
+<div class="dashboard">
+  <nav class="navbar">
+    <span class="brand">Hospital Portal</span>
+    <span>Welcome, {{ username }}</span>
+    <button class="btn-logout" (click)="logout()">Logout</button>
+  </nav>
+
+  <div class="content">
+    <div class="header-row">
+      <h2>My Appointments</h2>
+      <a routerLink="/book" class="btn-primary">+ Book Appointment</a>
+    </div>
+
+    <div *ngIf="appointments.length === 0" class="empty">
+      No appointments yet. <a routerLink="/book">Book your first one.</a>
+    </div>
+
+    <table *ngIf="appointments.length > 0" class="table">
+      <thead>
+        <tr>
+          <th>Doctor</th>
+          <th>Specialization</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Status</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let a of appointments">
+          <td>Dr. {{ a.doctor.firstName }} {{ a.doctor.lastName }}</td>
+          <td>{{ a.doctor.specialization }}</td>
+          <td>{{ a.appointmentDate }}</td>
+          <td>{{ a.slotTime }}</td>
+          <td><span class="status-badge" [ngClass]="statusClass(a.status)">{{ a.status }}</span></td>
+          <td>{{ a.notes || '-' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

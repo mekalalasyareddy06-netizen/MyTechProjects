@@ -1,0 +1,40 @@
+<div class="dashboard">
+  <nav class="navbar">
+    <span class="brand">Hospital Portal — Doctor</span>
+    <span>Dr. {{ username }}</span>
+    <button class="btn-logout" (click)="logout()">Logout</button>
+  </nav>
+
+  <div class="content">
+    <h2>My Appointments</h2>
+
+    <div *ngIf="appointments.length === 0" class="empty">No appointments scheduled.</div>
+
+    <table *ngIf="appointments.length > 0" class="table">
+      <thead>
+        <tr>
+          <th>Patient</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Status</th>
+          <th>Notes</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let a of appointments">
+          <td>{{ a.patient.firstName }} {{ a.patient.lastName }}</td>
+          <td>{{ a.appointmentDate }}</td>
+          <td>{{ a.slotTime }}</td>
+          <td><span class="status-badge" [ngClass]="statusClass(a.status)">{{ a.status }}</span></td>
+          <td>{{ a.notes || '-' }}</td>
+          <td class="actions">
+            <button *ngIf="a.status === 'PENDING'" (click)="updateStatus(a.id, 'CONFIRMED')" class="btn-confirm">Confirm</button>
+            <button *ngIf="a.status === 'CONFIRMED'" (click)="updateStatus(a.id, 'COMPLETED')" class="btn-complete">Complete</button>
+            <button *ngIf="a.status !== 'CANCELLED' && a.status !== 'COMPLETED'" (click)="updateStatus(a.id, 'CANCELLED')" class="btn-cancel">Cancel</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

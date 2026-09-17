@@ -1,0 +1,84 @@
+<div class="auth-container">
+  <div class="auth-card wide">
+    <h2>Hospital Portal</h2>
+    <h3>Create Account</h3>
+
+    <div class="error" *ngIf="error">{{ error }}</div>
+
+    <form (ngSubmit)="onSubmit()">
+      <div class="field">
+        <label>Role</label>
+        <select [(ngModel)]="form.role" name="role">
+          <option value="PATIENT">Patient</option>
+          <option value="DOCTOR">Doctor</option>
+        </select>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label>First Name</label>
+          <input [(ngModel)]="form.firstName" name="firstName" required />
+        </div>
+        <div class="field">
+          <label>Last Name</label>
+          <input [(ngModel)]="form.lastName" name="lastName" required />
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Username</label>
+        <input [(ngModel)]="form.username" name="username" required />
+      </div>
+      <div class="field">
+        <label>Email</label>
+        <input type="email" [(ngModel)]="form.email" name="email" required />
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input type="password" [(ngModel)]="form.password" name="password" required />
+      </div>
+      <div class="field">
+        <label>Phone</label>
+        <input [(ngModel)]="form.phone" name="phone" />
+      </div>
+
+      <!-- Doctor-only fields -->
+      <ng-container *ngIf="form.role === 'DOCTOR'">
+        <div class="field">
+          <label>Specialization</label>
+          <input [(ngModel)]="form.specialization" name="specialization" required />
+        </div>
+        <div class="row">
+          <div class="field">
+            <label>Available From</label>
+            <input type="time" [(ngModel)]="form.availableFrom" name="availableFrom" />
+          </div>
+          <div class="field">
+            <label>Available To</label>
+            <input type="time" [(ngModel)]="form.availableTo" name="availableTo" />
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- Patient-only fields -->
+      <ng-container *ngIf="form.role === 'PATIENT'">
+        <div class="field">
+          <label>Date of Birth</label>
+          <input type="date" [(ngModel)]="form.dateOfBirth" name="dateOfBirth" />
+        </div>
+        <div class="field">
+          <label>Blood Group</label>
+          <input [(ngModel)]="form.bloodGroup" name="bloodGroup" placeholder="e.g. A+" />
+        </div>
+        <div class="field">
+          <label>Address</label>
+          <input [(ngModel)]="form.address" name="address" />
+        </div>
+      </ng-container>
+
+      <button type="submit">Register</button>
+    </form>
+
+    <p>Already have an account? <a routerLink="/login">Login</a></p>
+  </div>
+</div>
