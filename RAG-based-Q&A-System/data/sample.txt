@@ -1,0 +1,17 @@
+Introduction to Artificial Intelligence
+
+Artificial Intelligence (AI) is the simulation of human intelligence processes by machines, especially computer systems. These processes include learning, reasoning, and self-correction.
+
+Machine Learning is a subset of AI that enables computers to learn from data without being explicitly programmed. It uses statistical techniques to give computers the ability to "learn" from data.
+
+Deep Learning is a subset of machine learning that uses neural networks with many layers. These deep neural networks can automatically learn representations from raw data such as images, text, or audio.
+
+Natural Language Processing (NLP) is a branch of AI that deals with the interaction between computers and humans using natural language. It enables computers to understand, interpret, and generate human language.
+
+Large Language Models (LLMs) are a type of AI model trained on massive amounts of text data. They can generate coherent text, answer questions, write code, and perform many language tasks. Examples include GPT-4, Claude, and LLaMA.
+
+Retrieval-Augmented Generation (RAG) is a technique that combines information retrieval with text generation. It retrieves relevant documents from a knowledge base and uses them as context for an LLM to generate accurate, grounded answers.
+
+Vector Databases store data as high-dimensional vectors (embeddings). They enable fast similarity search — finding documents that are semantically similar to a query. Examples include FAISS, ChromaDB, and Pinecone.
+
+Embeddings are numerical representations of text (or images) in a high-dimensional vector space. Similar pieces of text will have embeddings that are close together in this space. OpenAI's text-embedding-ada-002 is a popular embedding model.
