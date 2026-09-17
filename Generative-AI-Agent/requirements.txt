@@ -1,0 +1,18 @@
+# LangChain core
+langchain>=0.3.25
+langchain-groq>=0.3.2
+langchain-community>=0.3.24
+langchain-huggingface>=0.1.2
+
+# Vector store
+chromadb>=0.6.0
+
+# Embeddings (local, free)
+sentence-transformers>=3.4.1
+
+# Document loaders
+pypdf>=5.4.0
+bs4>=0.0.2
+
+# Environment variables
+python-dotenv>=1.0.1
